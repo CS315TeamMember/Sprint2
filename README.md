@@ -4,4 +4,5 @@ Lets get after it!
 
 this project will be an extension of sprint 1.
 
-I think it might be helpful if we work in the "workspace" branch and when you're happy with your work you can send it to rough branch. Rough branch can be a place where we all review it and then we can agree to commit it to the main branch. Let me know what you guys think of this. Might be a little to complicated..
+I think it might be helpful if whenever you do any work you create your own branch maybe call it "Alex's progress". Then it might be a good idea if another person reviews it (agrees with the code) and then pulls it to main and deletes the "Alex's progress" branch. Let me know what you think
+
