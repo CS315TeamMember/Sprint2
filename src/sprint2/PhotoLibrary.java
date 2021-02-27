@@ -3,7 +3,7 @@
  * Evelina Teran
  */
 
-package sprint1;
+package sprint2;
 import java.util.*;
 
 public class PhotoLibrary{

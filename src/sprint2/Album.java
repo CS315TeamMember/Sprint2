@@ -1,4 +1,4 @@
-package sprint1;
+package sprint2;
 import java.util.*;
 
 
@@ -24,7 +24,6 @@ public class Album{
 	 */
 	public Album(String name) {
 		this.name = name;
-		ArrayList<Photograph> photos = new ArrayList<Photograph>();
 	}
 
 	
@@ -52,7 +51,7 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean addPhoto(Photograph p) {
-		if photos.contains(p) {
+		if (photos.contains(p)) { //if statements need parentheses around the condition. I've corrected everywhere they've been missing. - Adair
 			return false;
 		}
 		else {
@@ -69,7 +68,7 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean hasPhoto(Photograph p) {
-		if photos.contains(p) {
+		if (photos.contains(p)) {
 			return true;
 		}
 		else {
@@ -84,7 +83,7 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean removePhoto(Photograph p) {
-		if photos.contains(p) {
+		if (photos.contains(p)) { 
 			photos.remove(p);
 			return true;
 		}
@@ -110,7 +109,7 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean equals(Object o) {
-		if  o instanceof Album {
+		if  (o instanceof Album) {
 			return true;
 		}
 		else {
@@ -120,7 +119,7 @@ public class Album{
 	
 	
 	/**
-	 * Method that returns the Album name and photograps in the album to a string.
+	 * Method that returns the Album name and photographs in the album to a string.
 	 * @return (String): String of Album name and photos.
 	 */
 	public String toString() {
@@ -134,8 +133,7 @@ public class Album{
 	 */
 	@Override
 	public int hashCode() {
-		albumhashcode = name.hashCode();
-		return albumhashcode;
+		return name.hashCode();
 	}
 	
 	

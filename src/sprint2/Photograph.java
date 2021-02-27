@@ -1,4 +1,4 @@
-package sprint1;
+package sprint2;
 
 /**
  * Sprint 1
