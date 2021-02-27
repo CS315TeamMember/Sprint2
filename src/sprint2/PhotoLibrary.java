@@ -3,7 +3,7 @@
  * Evelina Teran
  */
 
-package sprint2;
+package sprint1;
 import java.util.*;
 
 public class PhotoLibrary{
@@ -21,7 +21,7 @@ public class PhotoLibrary{
 	private String name;
 	private final int ID;
 	private ArrayList<Photograph> photos = new ArrayList<Photograph>(); // Was declared but not instantiated. Fixed! (: -- Adair
-	
+	private HashSet<String> albums = new HashSet<String>();
 	/**
 	 * Constructor for name and id
 	 * 
@@ -30,8 +30,7 @@ public class PhotoLibrary{
 	 */
 	public PhotoLibrary(String name, int id) {
 		this.name = name;
-		this.ID = id; 
-		List<Photograph> photos = new ArrayList<Photograph>();
+		this.ID = id;		
 	}
 	
 	/**
@@ -58,6 +57,10 @@ public class PhotoLibrary{
 		return photos;
 	}
 	
+	public HashSet<String> getAlbum(){
+		return albums;
+	}
+	
 	/**
 	 * Mutator/setter for the field name
 	 * @param name
@@ -78,7 +81,7 @@ public class PhotoLibrary{
 	public boolean addPhoto(Photograph p) {
 		if (!photos.contains(p)) {
 			photos.add(p);
-			return true;
+			return photos.add(p);
 		}
 		else {
 			return false;
@@ -87,13 +90,13 @@ public class PhotoLibrary{
 	
 	/**
 	 * 
-	 * @param p represnts a photograph
+	 * @param p represents a photograph
 	 * @return
 	 */
 	//Checks to see if p is in the list of photos
 	public boolean hasPhoto(Photograph p) {
 		if (photos.contains(p)) {
-			return true;
+			return getPhotos().contains(p);
 		}
 		else {
 			return false;
@@ -107,7 +110,7 @@ public class PhotoLibrary{
 		}
 		else {
 			photos.remove(p);
-			return true;
+			return getPhotos().remove(p);
 		}
 	}
 	
@@ -151,12 +154,10 @@ public class PhotoLibrary{
 		// Using for each loops to loop through every photo in the ArrayLists aPhotos and bPhotos
 		// Structure for these loops are "for (type variableName : arrayName)"
 		for (Photograph photoA : aPhotos) {
-			for (Photograph photoB : bPhotos) {
-				if (photoA.equals(photoB)) {
+			if(bPhotos.contains(photoA)) {
 					result.add(photoA);
 				}
 			}
-		}
 		return result;
 	}
 	
@@ -166,7 +167,7 @@ public class PhotoLibrary{
 		double simVal;
 		
 		ArrayList<Photograph>result = PhotoLibrary.commonPhotos(a, b);
-		if (result.size() == 0) {
+		if (result.isEmpty()) {
 			return 0.0;
 		}
 		else {
@@ -177,6 +178,106 @@ public class PhotoLibrary{
 	}
 	
 	
-
+	public ArrayList<Photograph> getPhotos(int rating){
+		
+		if (rating >= 0 && rating <= 5) {
+			ArrayList<Photograph>result = new ArrayList<Photograph>();
+			for (Photograph photoA : photos) {
+				//How do I make sure its the rating for photoA being compared to the goal rating
+				if (photoA.getRating() >= rating){
+					result.add(photoA);
+				}
+			}
+			
+		}
+		else {
+			return null;
+		}
+	}
 	
+	public ArrayList<Photograph> getPhotosInYear(int year){
+		ArrayList<Photograph>result = new ArrayList<Photograph>();
+		for(Photograph photoA: photos) {
+			if(photoA.getYear() = year) {
+				result.add(photoA);
+			}
+		}
+		return result;
+	}
+	
+	public ArrayList<Photograph> getPhotosInMonth(int month, int year){
+		ArrayList<Photograph>photos = a.getPhotos();
+		ArrayList<Photograph>result = new ArrayList<Photograph>();
+		for(Photograph photoA: aPhotos) {
+			if((year = year) & (month = month)){
+				result.add(photoA);
+			}
+		}
+		return result;
+	}
+	
+	public ArrayList<Photograph> getPhotosBetween(String beginDate, String endDate){
+		ArrayList<Photograph>photos = a.getPhotos();
+		ArrayList<Photograph>result = new ArrayList<Photograph>();
+		for(Photograph photoA: aPhotos) {
+			if((beginDate ) & (month = month)){
+				result.add(photoA);
+			}
+		}
+		return result;
+	}
+	
+	public boolean createAlbum(String albumName) {
+		if (!albums.contains(albumName)) {
+			albums.add(albumName);
+			Album a1 = new Album(albumName);
+			return albums.add(albumName);
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean removeAlbum(String albumName) {
+		if (!albums.contains(albumName)) {
+			return false;
+		}
+		else {
+			albums.remove(albumName);
+			return getPhotos().remove(albumName);
+		}
+	}
+	
+	public boolean addPhotoToAlbum(Photograph p, String albumName) {
+		if(!albums.contains(albumName))
+			if(!albumName.contains(p)) {
+				a1.add(p);
+				return albumName.add(p);
+			}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean removePhotoFromAlbum(Photograph p, String albumName) {
+		if (!albumName.hasPhotos(p)) {
+			return false;
+		}
+		else {
+			Albums(albumName).remove(p);
+			return getPhotos().remove(p);
+		}
+	}
+	
+	private Album getAlbumByName(String albumName) {
+		
+	}
+	
+	public boolean erasePhoto(Photograph p) {
+		//Modify original one actually
+	}
+	
+	public String toString() {
+		//Modify original one actually 
+	}
 }
