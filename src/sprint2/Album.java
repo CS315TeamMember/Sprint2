@@ -35,6 +35,9 @@ public class Album{
 		return name;
 	}
 	
+	public ArrayList<Photograph> getPhotos() {
+		return photos;
+	}
 	
 	/**
 	 * Mutator for an Album object. Rename an album.
