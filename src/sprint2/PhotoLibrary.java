@@ -21,7 +21,7 @@ public class PhotoLibrary{
 	private String name;
 	private final int ID;
 	private ArrayList<Photograph> photos = new ArrayList<Photograph>(); // Was declared but not instantiated. Fixed! (: -- Adair
-	private HashSet<String> albums = new HashSet<String>();
+	private HashSet<Album> albums = new HashSet<Album>();
 	/**
 	 * Constructor for name and id
 	 * 
@@ -104,14 +104,17 @@ public class PhotoLibrary{
 	}
 	
 	//Erases a photo from the feed
+	//Modify this one
 	public boolean erasePhoto(Photograph p) {
 		if (!photos.contains(p)) {
 			return false;
 		}
 		else {
 			photos.remove(p);
+			albums.remove(p);
 			return getPhotos().remove(p);
 		}
+		
 	}
 	
 	public int numPhotographs() {
@@ -188,7 +191,7 @@ public class PhotoLibrary{
 					result.add(photoA);
 				}
 			}
-			
+			return result;
 		}
 		else {
 			return null;
@@ -198,7 +201,8 @@ public class PhotoLibrary{
 	public ArrayList<Photograph> getPhotosInYear(int year){
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
 		for(Photograph photoA: photos) {
-			if(photoA.getYear() = year) {
+			String[] parts = photoA.getDateTaken().split("-");
+			if(parts[0].equals(String.valueOf(year))) {
 				result.add(photoA);
 			}
 		}
@@ -207,8 +211,9 @@ public class PhotoLibrary{
 	
 	public ArrayList<Photograph> getPhotosInMonth(int month, int year){
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
-		for(Photograph photoA: aPhotos) {
-			if((year = year) & (month = month)){
+		for(Photograph photoA: photos) {
+			String[] parts = photoA.getDateTaken().split("-");
+			if((parts[0].equals(String.valueOf(year))) && (parts[1].equals(String.valueOf(month)))){
 				result.add(photoA);
 			}
 		}
@@ -216,10 +221,10 @@ public class PhotoLibrary{
 	}
 	
 	public ArrayList<Photograph> getPhotosBetween(String beginDate, String endDate){
-		ArrayList<Photograph>photos = a.getPhotos();
+		
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
-		for(Photograph photoA: aPhotos) {
-			if((beginDate ) & (month = month)){
+		for(Photograph photoA: photos) {
+			if((photoA.getDateTaken().compareTo(endDate) < 0 && photoA.getDateTaken().compareTo(beginDate) > 0)){
 				result.add(photoA);
 			}
 		}
@@ -228,9 +233,8 @@ public class PhotoLibrary{
 	
 	public boolean createAlbum(String albumName) {
 		if (!albums.contains(albumName)) {
-			albums.add(albumName);
 			Album a1 = new Album(albumName);
-			return albums.add(albumName);
+			return albums.add(a1);
 		}
 		else {
 			return false;
@@ -249,7 +253,7 @@ public class PhotoLibrary{
 	
 	public boolean addPhotoToAlbum(Photograph p, String albumName) {
 		if(!albums.contains(albumName))
-			if(!albumName.contains(p)) {
+			if(!a1.contains(p)) {
 				a1.add(p);
 				return albumName.add(p);
 			}
@@ -269,14 +273,9 @@ public class PhotoLibrary{
 	}
 	
 	private Album getAlbumByName(String albumName) {
-		
+		if (albums.contains(albumName)){
+			return albums[albumName];
+		}
 	}
 	
-	public boolean erasePhoto(Photograph p) {
-		//Modify original one actually
-	}
-	
-	public String toString() {
-		//Modify original one actually 
-	}
 }
