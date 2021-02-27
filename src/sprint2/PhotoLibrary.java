@@ -1,9 +1,9 @@
 /**
- * Sprint 1
+ * Sprint 2
  * Evelina Teran
  */
 
-package sprint1;
+package sprint2;
 import java.util.*;
 
 public class PhotoLibrary{
@@ -206,7 +206,6 @@ public class PhotoLibrary{
 	}
 	
 	public ArrayList<Photograph> getPhotosInMonth(int month, int year){
-		ArrayList<Photograph>photos = a.getPhotos();
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
 		for(Photograph photoA: aPhotos) {
 			if((year = year) & (month = month)){
