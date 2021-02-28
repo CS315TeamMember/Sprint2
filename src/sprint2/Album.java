@@ -24,6 +24,7 @@ public class Album{
 	 */
 	public Album(String name) {
 		this.name = name;
+		ArrayList<Photograph> photos = new ArrayList<Photograph>();
 	}
 
 	
@@ -136,7 +137,7 @@ public class Album{
 	 */
 	@Override
 	public int hashCode() {
-		return name.hashCode();
+		return super.hashCode();
 	}
 	
 	
