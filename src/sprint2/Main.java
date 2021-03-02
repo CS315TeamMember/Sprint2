@@ -10,13 +10,13 @@ public class Main {
 		
 		
 		// Creating two objects of the same picture 
-		Photograph newpic = new Photograph("coolfilename", "superduper cool picture caption");
-		Photograph samepic = new Photograph("coolfilename", "superduper cool picture caption");
+		Photograph newpic = new Photograph("test1name", "test1caption");
+		Photograph samepic = new Photograph("test2name", "test2caption");
 		
 		
 		
 		// Create a different object
-		Photograph difpic = new Photograph("yuckfilename", "not superduper cool picture caption");
+		Photograph difpic = new Photograph("test3name", "test3caption");
 		
 		
 		

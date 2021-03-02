@@ -4,6 +4,8 @@
  */
 
 package sprint2;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class PhotoLibrary{
@@ -79,7 +81,6 @@ public class PhotoLibrary{
 	 */
 	public boolean addPhoto(Photograph p) {
 		if (!photos.contains(p)) {
-			photos.add(p);
 			return photos.add(p);
 		}
 		else {
@@ -110,7 +111,7 @@ public class PhotoLibrary{
 		}
 		else {
 			photos.remove(p);
-			albums.remove(p);
+			albums.remove(p); //removePhotoFromAlbum?
 			return getPhotos().remove(p);
 		}
 		
@@ -147,7 +148,11 @@ public class PhotoLibrary{
 	 * @author Adair Tabb
 	 */
 	public String toString() {
-		return "Name: " + name + "\n" + "ID: " + ID + "\n" + "Photos: " + photos;
+		ArrayList<String> photographs = new ArrayList<String>();
+		for(Photograph photo : photos) {
+			photographs.add(photo.toString());
+		}
+		return "Name: " + name + "\n" + "ID: " + ID + "\n" + "Photos: " + photographs;
 	}
 
 	/**
@@ -226,6 +231,7 @@ public class PhotoLibrary{
 	 * @return result Returns an ArrayList of photos
 	 */
 	public ArrayList<Photograph> getPhotosInYear(int year){
+		if(String.valueOf(year).length() == 4) {
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
 		for(Photograph photoA: photos) {
 			String[] parts = photoA.getDateTaken().split("-");
@@ -234,6 +240,10 @@ public class PhotoLibrary{
 			}
 		}
 		return result;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	/**
@@ -244,6 +254,7 @@ public class PhotoLibrary{
 	 * @return result Returns an ArrayList of Photos.
 	 */
 	public ArrayList<Photograph> getPhotosInMonth(int month, int year){
+		if(String.valueOf(month).length() == 2 && String.valueOf(year).length() == 4) {
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
 		for(Photograph photoA: photos) {
 			String[] parts = photoA.getDateTaken().split("-");
@@ -252,6 +263,10 @@ public class PhotoLibrary{
 			}
 		}
 		return result;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	/**
@@ -262,10 +277,9 @@ public class PhotoLibrary{
 	 * @return result An ArrayList of photos
 	 */
 	public ArrayList<Photograph> getPhotosBetween(String beginDate, String endDate){
-		
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
 		for(Photograph photoA: photos) {
-			if((photoA.getDateTaken().compareTo(endDate) < 0 && photoA.getDateTaken().compareTo(beginDate) > 0)){
+			if((photoA.getDateTaken().compareTo(endDate) <= 0 && photoA.getDateTaken().compareTo(beginDate) >= 0)){
 				result.add(photoA);
 			}
 		}
@@ -273,7 +287,7 @@ public class PhotoLibrary{
 	}
 	
 	/**
-	 * Cretes a new Album with the name albumName if an Album with that name exists in the set of albums.
+	 * Creates a new Album with the name albumName if an Album with that name exists in the set of albums.
 	 * @author Evelina
 	 * @param albumName Name of the album being created.
 	 * @return Returns true if the add was successful, false otherwise.
@@ -295,12 +309,12 @@ public class PhotoLibrary{
 	 * @return Returns true if the remove was successful, false otherwise.
 	 */
 	public boolean removeAlbum(String albumName) {
-		if (!albums.contains(albumName)) {
+		if (!albums.contains(getAlbumByName(albumName))) {
 			return false;
 		}
 		else {
-			albums.remove(albumName);
-			return getPhotos().remove(albumName);
+			return albums.remove(getAlbumByName(albumName));
+			//return getPhotos().remove(albumName);
 		}
 	}
 	
@@ -313,7 +327,7 @@ public class PhotoLibrary{
 	 * @return Returns true if the Photograph was added; return false if it was not added.
 	 */
 	public boolean addPhotoToAlbum(Photograph p, String albumName) {
-		if (hasPhoto(p)) {
+		if (photos.contains(p)) {
 			return getAlbumByName(albumName).addPhoto(p);
 		}
 		else {

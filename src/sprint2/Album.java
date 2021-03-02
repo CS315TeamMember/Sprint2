@@ -24,7 +24,6 @@ public class Album{
 	 */
 	public Album(String name) {
 		this.name = name;
-		ArrayList<Photograph> photos = new ArrayList<Photograph>();
 	}
 
 	
@@ -108,7 +107,7 @@ public class Album{
 	}
 	
 	/**
-	 * Method that determines if the current Album  object’s  name  value  is  equal  to  the  name  value  of  the  object passed
+	 * Method that determines if the current Album  object's  name  value  is  equal  to  the  name  value  of  the  object passed
 	 * @param (p): object being compared to the Album object
 	 * @return (boolean): returns true or false
 	 */
@@ -123,11 +122,16 @@ public class Album{
 	
 	
 	/**
-	 * Method that returns the Album name and photographs in the album to a string.
+	 * Method that returns the Album name and the filenames of the photographs in the Album as a string.
 	 * @return (String): String of Album name and photos.
+	 * @author Adair Tabb
 	 */
 	public String toString() {
-		return "Photo Album: " + name + "\n" + photos;		
+		ArrayList<String> photographs = new ArrayList<String>();
+		for(Photograph photo : photos) {
+			photographs.add(photo.getFileName());
+		}
+		return "Photo Album: " + name + "\nPhotographs: " + photographs;		
 	}
 	
 	
@@ -137,7 +141,7 @@ public class Album{
 	 */
 	@Override
 	public int hashCode() {
-		return super.hashCode();
+		return name.hashCode();
 	}
 	
 	

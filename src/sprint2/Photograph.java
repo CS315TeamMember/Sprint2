@@ -14,15 +14,16 @@ package sprint2;
 
 public class Photograph {
 	/**
-	 * @author Adair Tabb
+	 * 
 	 * Stores the permanent filename of a Photograph object.
+	 * @author Adair Tabb
 	 */
 	private final String FILENAME;
 	/**
-	 * @author Adair Tabb
 	 * Stores the permanent caption of a Photograph object.
+	 * @author Adair Tabb
 	 */
-	private final String CAPTION;
+	private String caption; //mutator for caption can't work with caption as a final variable. - A.
 	
 	
 	/**
@@ -39,14 +40,14 @@ public class Photograph {
 	private int rating;
 	
 	/**
-	 * @author Adair Tabb
 	 * Constructor for a Photograph object, taking a filename and caption, which are then stored in the class fields.
 	 * @param filename The filename of the photograph object.
 	 * @param caption  The caption of the photograph object.
+	 * @author Adair Tabb
 	 */
 	Photograph(String filename, String caption) {
 		this.FILENAME = filename;
-		this.CAPTION = caption;
+		this.caption = caption;
 	}
 	
 	
@@ -61,27 +62,27 @@ public class Photograph {
 	 */
 	public Photograph(String filename, String caption, String dateTaken, int rating) {
 		this.FILENAME = filename;
-		this.CAPTION = caption;
+		this.caption = caption;
 		this.dateTaken = dateTaken;
 		this.rating = rating;
 	}
 	
 	/**
-	 * @author Adair Tabb
 	 * Gets and returns the filename stored in the corresponding class field.
 	 * @return The string currently stored in the FILENAME class field.
+	 * @author Adair Tabb
 	 */
 	public String getFileName() {
 		return FILENAME;
 	}
 	
 	/**
-	 * @author Adair Tabb
 	 * Gets and returns the caption stored in the corresponding class field.
 	 * @return The string currently stored in the CAPTION class field.
+	 * @author Adair Tabb
 	 */
 	public String getCaption() {
-		return CAPTION;
+		return caption;
 	}
 	
 	/**
@@ -104,11 +105,11 @@ public class Photograph {
 	
 	/**
 	 * @author Evelina
-	 * Mutator/setter for the field dateTaken.
+	 * Mutator/setter for the field caption.
 	 * @param caption
 	 */
-	public void setCaption(String dateTaken) {
-		this.dateTaken = dateTaken;
+	public void setCaption(String caption) {
+		this.caption = caption;
 	}
 	
 	/**
@@ -136,24 +137,24 @@ public class Photograph {
 		}
 		Photograph that = (Photograph) o;
 		
-		return this.FILENAME.equals(that.FILENAME) && this.CAPTION.equals(that.CAPTION) && this.dateTaken.equals(that.dateTaken);
+		return this.FILENAME.equals(that.FILENAME) && this.caption.equals(that.caption) && this.dateTaken.equals(that.dateTaken);
 	}
 	
 	/**
-	 * @author Adair Tabb
 	 * A method to allow a Photograph object's field information to be printed as an easily readable String when the object is called in a print() or println().
 	 * @return A String containing the Photograph object's fields in an understandable format. 
+	 * @author Adair Tabb
 	 */
 	public String toString() {
-		return "Filename: " + FILENAME + "\n" + "Caption: " + CAPTION;
+		return "Filename: " + FILENAME + "\n" + "Caption: " + caption;
 	}
 	
 	/**
 	 * @author Evelina
-	 *  Overrides the default hasCode method in the Object class to produce a uniquw integer for a Photogrpah object.
+	 *  Overrides the default hashCode method in the Object class to produce a unique integer for a Photograph object.
 	 */
 	public int hashCode() {
-		String uniqueStr = FILENAME + "---" + CAPTION + "---" + dateTaken;
+		String uniqueStr = FILENAME + "---" + caption + "---" + dateTaken;
 		return uniqueStr.hashCode();
 	}
 }
