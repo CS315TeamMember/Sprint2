@@ -17,6 +17,9 @@ public class PhotoLibrary{
 	 * 
 	 * "photos" is an ArrayList<Photograph> of photos the user has posted
 	 * to their feed in this library
+	 * 
+	 * "albums" is a Hashset of Albums that this user created. Each album will
+	 * then contain photos from this user's photos stream that they have organized into albums.
 	 */
 	private String name;
 	private final int ID;
@@ -112,7 +115,11 @@ public class PhotoLibrary{
 		}
 		
 	}
-	
+	/**
+	 * Returns the number of photos in a photo feed.
+	 * @author Evelina
+	 * @return numPhotos 
+	 */
 	public int numPhotographs() {
 		int numPhotos = photos.size();
 		return numPhotos;
@@ -143,7 +150,13 @@ public class PhotoLibrary{
 		return "Name: " + name + "\n" + "ID: " + ID + "\n" + "Photos: " + photos;
 	}
 
-	
+	/**
+	 * @author Evelina
+	 * Compares two photo feeds and seeing how many photos they have in common.
+	 * @param a represents a feed of photographs
+	 * @param b represents a feed of photographs
+	 * @return result The number of photos the two feeds have in common
+	 */
 	public static ArrayList<Photograph> commonPhotos(PhotoLibrary a, PhotoLibrary b){
 		ArrayList<Photograph>aPhotos = a.getPhotos();
 		ArrayList<Photograph>bPhotos = b.getPhotos();
@@ -160,7 +173,14 @@ public class PhotoLibrary{
 		return result;
 	}
 	
-	
+	/**
+	 * @author Evelina
+	 * Returns a measure of how similar the photo beeds are between PhotoLibrary a and PhotoLibrary b, in terms of
+	 * a numerical value between 0 and 1.
+	 * @param a represents a photo feed
+	 * @param b represents a photo feed
+	 * @return simVal Returns a value between 0 and 1
+	 */
 	
 	public static double similarity(PhotoLibrary a, PhotoLibrary b) {
 		double simVal;
@@ -176,7 +196,12 @@ public class PhotoLibrary{
 		}
 	}
 	
-	
+	/**
+	 * @author Evelina
+	 * Return an ArrayList of photos from the photos feed that have a rating greater than or equal to the given parameter.
+	 * @param rating Desired rating for a photo.
+	 * @return result Returns an ArrayList of photos
+	 */
 	public ArrayList<Photograph> getPhotos(int rating){
 		
 		if (rating >= 0 && rating <= 5) {
@@ -194,6 +219,12 @@ public class PhotoLibrary{
 		}
 	}
 	
+	/**
+	 * Returns an ArrayList of photos from the photos from the photos feed that were taken in the year provided.
+	 * @author Evelina
+	 * @param year Desired year in which the photo was taken.
+	 * @return result Returns an ArrayList of photos
+	 */
 	public ArrayList<Photograph> getPhotosInYear(int year){
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
 		for(Photograph photoA: photos) {
@@ -205,6 +236,13 @@ public class PhotoLibrary{
 		return result;
 	}
 	
+	/**
+	 * Returns an ArrayList of photos from the photos feed that were taken in the month and year provided.
+	 * @author Evelina
+	 * @param month Desired month the photo was taken.
+	 * @param year Desired year the photo was taken.
+	 * @return result Returns an ArrayList of Photos.
+	 */
 	public ArrayList<Photograph> getPhotosInMonth(int month, int year){
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
 		for(Photograph photoA: photos) {
@@ -216,6 +254,13 @@ public class PhotoLibrary{
 		return result;
 	}
 	
+	/**
+	 * Return an ArrayList of photos from the photos feed that were taken between beginDate and endDate(inclusive).
+	 * @author Evelina
+	 * @param beginDate Set begin date.
+	 * @param endDate Set end date.
+	 * @return result An ArrayList of photos
+	 */
 	public ArrayList<Photograph> getPhotosBetween(String beginDate, String endDate){
 		
 		ArrayList<Photograph>result = new ArrayList<Photograph>();
@@ -227,6 +272,12 @@ public class PhotoLibrary{
 		return result;
 	}
 	
+	/**
+	 * Cretes a new Album with the name albumName if an Album with that name exists in the set of albums.
+	 * @author Evelina
+	 * @param albumName Name of the album being created.
+	 * @return Returns true if the add was successful, false otherwise.
+	 */
 	public boolean createAlbum(String albumName) {
 		if (!albums.contains(albumName)) {
 			Album a1 = new Album(albumName);
@@ -237,6 +288,12 @@ public class PhotoLibrary{
 		}
 	}
 	
+	/**
+	 * Removes the Album with name albumName if an Album with that name exists in the set of albums.
+	 * @author Evelina
+	 * @param albumName Name of the album being removed.
+	 * @return Returns true if the remove was successful, false otherwise.
+	 */
 	public boolean removeAlbum(String albumName) {
 		if (!albums.contains(albumName)) {
 			return false;
@@ -247,6 +304,14 @@ public class PhotoLibrary{
 		}
 	}
 	
+	/**
+	 * Add the Photograph p to the Album in the set of albums that has name albumName if and only if 
+	 * it is in the PhotoLibrary's list of photos and it was not already in that album.
+	 * @author Evelina
+	 * @param p The photo that is being added to the album.
+	 * @param albumName The name of the album for which the photo is being added.
+	 * @return Returns true if the Photograph was added; return false if it was not added.
+	 */
 	public boolean addPhotoToAlbum(Photograph p, String albumName) {
 		if (hasPhoto(p)) {
 			return getAlbumByName(albumName).addPhoto(p);
@@ -256,6 +321,13 @@ public class PhotoLibrary{
 		}
 	}
 	
+	/**
+	 * Removes the Photograph p from the Album in the set of albums that has name albumName.
+	 * @author Evelina
+	 * @param p Photograph that is being removed.
+	 * @param albumName Name of the album for which the photo is being removed from.
+	 * @return Returns true if the photo was successfully removed. Otherwise return false.
+	 */
 	public boolean removePhotoFromAlbum(Photograph p, String albumName) {
 		if (hasPhoto(p)) {
 			return getAlbumByName(albumName).removePhoto(p);
@@ -265,6 +337,12 @@ public class PhotoLibrary{
 		}
 	}
 	
+	/**
+	 * Given an album name, return the Album with that name from the set of albums.
+	 * @author Evelina
+	 * @param albumName Name of the album that is being searched for.
+	 * @return Returns the Album. If an album with that name is not found, returns null.
+	 */
 	private Album getAlbumByName(String albumName) {
 		Album albumSearched = null;
 		for(Album album1: albums) {
