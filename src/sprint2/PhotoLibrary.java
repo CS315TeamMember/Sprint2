@@ -57,10 +57,6 @@ public class PhotoLibrary{
 		return photos;
 	}
 	
-	public HashSet<String> getAlbum(){
-		return albums;
-	}
-	
 	/**
 	 * Mutator/setter for the field name
 	 * @param name
@@ -252,30 +248,31 @@ public class PhotoLibrary{
 	}
 	
 	public boolean addPhotoToAlbum(Photograph p, String albumName) {
-		if(!albums.contains(albumName))
-			if(!a1.contains(p)) {
-				a1.add(p);
-				return albumName.add(p);
-			}
+		if (hasPhoto(p)) {
+			return getAlbumByName(albumName).addPhoto(p);
+		}
 		else {
 			return false;
 		}
 	}
 	
 	public boolean removePhotoFromAlbum(Photograph p, String albumName) {
-		if (!albumName.hasPhotos(p)) {
-			return false;
+		if (hasPhoto(p)) {
+			return getAlbumByName(albumName).removePhoto(p);
 		}
 		else {
-			Albums(albumName).remove(p);
-			return getPhotos().remove(p);
+			return false;
 		}
 	}
 	
 	private Album getAlbumByName(String albumName) {
-		if (albums.contains(albumName)){
-			return albums[albumName];
+		Album albumSearched = null;
+		for(Album album1: albums) {
+			if (album1.getName().equals(albumName)){
+				albumSearched = album1;
+			}
 		}
+		return albumSearched;
 	}
 	
 }
