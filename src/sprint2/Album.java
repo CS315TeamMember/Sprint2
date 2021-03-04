@@ -58,8 +58,7 @@ public class Album{
 			return false;
 		}
 		else {
-			photos.add(p);
-			return true;
+			return getPhotos().add();
 		}
 		
 	}
@@ -72,10 +71,10 @@ public class Album{
 	 */
 	public boolean hasPhoto(Photograph p) {
 		if (photos.contains(p)) {
-			return true;
+			return getPhotos().contains(p);
 		}
 		else {
-			return false;
+			return getPhotos().contains(p);
 		}
 	}
 	
@@ -87,11 +86,10 @@ public class Album{
 	 */
 	public boolean removePhoto(Photograph p) {
 		if (photos.contains(p)) { 
-			photos.remove(p);
-			return true;
+			return getPhotos().remove(p);
 		}
 		else {
-			return false;
+			return getPhotos().remove(photo);
 		}
 	}
 	
@@ -101,8 +99,7 @@ public class Album{
 	 * @return (numPhotos): An integer representing the number of photos in the album.
 	 */
 	public int numPhotographs() {
-		int numPhotos = photos.size();
-		return numPhotos;
+		return getPhotos().size()
 		
 	}
 	
