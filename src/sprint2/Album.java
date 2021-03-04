@@ -109,13 +109,24 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean equals(Object o) {
-		if  (o instanceof Album) {
-			return true;
-		}
-		else {
+		if (o == null){
 			return false;
 		}
-	}
+		if (!(o instanceOf Album)) {
+			return false;
+		}
+		else {
+			Album a = (Album)o;
+			
+		
+			if  (a.getName().equals(name)) {
+				return true;
+		}
+			else {
+				return false;
+		}
+		}
+		}
 	
 	
 	/**
