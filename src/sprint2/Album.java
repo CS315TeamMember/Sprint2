@@ -54,13 +54,7 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean addPhoto(Photograph p) {
-		if (photos.contains(p)) { //if statements need parentheses around the condition. I've corrected everywhere they've been missing. - Adair
-			return false;
-		}
-		else {
-			return getPhotos().add();
-		}
-		
+			return getPhotos().add(p);		
 	}
 	
 	
@@ -70,12 +64,8 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean hasPhoto(Photograph p) {
-		if (photos.contains(p)) {
-			return getPhotos().contains(p);
-		}
-		else {
-			return getPhotos().contains(p);
-		}
+		return getPhotos().contains(p);
+		
 	}
 	
 	
@@ -85,13 +75,9 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean removePhoto(Photograph p) {
-		if (photos.contains(p)) { 
-			return getPhotos().remove(p);
-		}
-		else {
-			return getPhotos().remove(photo);
-		}
+		return getPhotos().remove(p);
 	}
+		
 	
 	
 	/**
