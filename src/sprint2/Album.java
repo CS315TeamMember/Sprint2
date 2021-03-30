@@ -54,7 +54,12 @@ public class Album{
 	 * @return (boolean): returns true or false
 	 */
 	public boolean addPhoto(Photograph p) {
-			return getPhotos().add(p);		
+		if (!getPhotos().contains(p)) {
+			return getPhotos().add(p);
+		}
+		else {
+			return false;
+		}
 	}
 	
 	
@@ -85,7 +90,7 @@ public class Album{
 	 * @return (numPhotos): An integer representing the number of photos in the album.
 	 */
 	public int numPhotographs() {
-		return getPhotos().size()
+		return getPhotos().size();
 		
 	}
 	
@@ -98,7 +103,7 @@ public class Album{
 		if (o == null){
 			return false;
 		}
-		if (!(o instanceOf Album)) {
+		if (!(o instanceof Album)) {
 			return false;
 		}
 		else {

@@ -249,7 +249,7 @@ class PhotoLibraryTest {
 		Photograph testPhoto1 = new Photograph("adalovelace.jpg", "Ada Lovelace", "1906-12-10", 5);
 		testLibrary.addPhoto(testPhoto1);
 		testLibrary.createAlbum("testAlbumName");
-		assertTrue("addPhotoToAlbum() did not add a Photograph to an Album's ArrayList.", testLibrary.addPhotoToAlbum(testPhoto1, "testAblumName"));
+		assertTrue("addPhotoToAlbum() did not add a Photograph to an Album's ArrayList.", testLibrary.addPhotoToAlbum(testPhoto1, "testAlbumName"));
 	}
 
 	@Test
@@ -259,7 +259,7 @@ class PhotoLibraryTest {
 		testLibrary.addPhoto(testPhoto1);
 		testLibrary.createAlbum("testAlbumName");
 		testLibrary.addPhotoToAlbum(testPhoto1, "testAlbumName");
-		assertTrue("removePhotofromAlbum() did not remove a Photograph from an Album's ArrayList.", testLibrary.removePhotoFromAlbum(testPhoto1, "testAblumName"));
+		assertTrue("removePhotofromAlbum() did not remove a Photograph from an Album's ArrayList.", testLibrary.removePhotoFromAlbum(testPhoto1, "testAlbumName"));
 	}
 
 }
